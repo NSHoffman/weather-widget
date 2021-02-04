@@ -1,5 +1,7 @@
 <template>
   <li class="weather-item">
+
+    <!--If Weather Data is available - show information-->
     <section v-if="weather" class="weather-data">
       <h3 class="weather-data__heading">{{ location.name }}</h3>
       <section class="weather-data__temp">
@@ -51,10 +53,12 @@
       </section>
     </section>
 
+    <!--If loading is in progress - show skeleton component-->
     <weather-item-skeleton
       v-else-if="isLoading"
     ></weather-item-skeleton>
 
+    <!--If error occurred - show error message-->
     <weather-item-error v-else-if="error">
       <h2 class="weather-item-error__heading">
         Oops!
@@ -102,6 +106,7 @@ export default defineComponent({
   },
 
   computed: {
+  // no-non-null-assertion rule is disabled as there is no way these members are going to be used with weather object absent
   /* eslint-disable @typescript-eslint/no-non-null-assertion */
     iconLink(): string {    
       return `http://openweathermap.org/img/wn/${this.weather!.icon}@2x.png`;
@@ -152,7 +157,8 @@ export default defineComponent({
     },
 
     formatTemperature(temp: number): string {
-      return temp > 0 ? `+${Math.round(temp)}°C` : `${Math.round(temp)}°C`;
+      temp = Math.round(temp);
+      return temp > 0 ? `+${temp}°C` : `${temp}°C`;
     },
   },
 

@@ -11,14 +11,16 @@
 </template>
 
 <script lang="ts">
-import { WeatherLocation } from "@/weather-api/types";
-import { defineComponent } from "vue";
+import { WeatherLocation, WeatherSearchItemNormalized } from "@/weather-api/types";
 import WeatherSearchResult from "./WeatherSearchResult.vue";
+import { defineComponent, PropType } from "vue";
 
 export default defineComponent({
-  components: { WeatherSearchResult },
+  components: { 
+    "weather-search-result": WeatherSearchResult, 
+  },
   props: {
-    searchResults: Array,
+    searchResults: Array as PropType<WeatherSearchItemNormalized[]>,
   },
   emits: ["selectResult"],
   methods: {

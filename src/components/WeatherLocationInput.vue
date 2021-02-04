@@ -23,6 +23,7 @@
       ></font-awesome-icon>
     </button>
 
+    <!--If an error occurred - show error message under the input-->
     <span class="location-input__error" v-if="error">
       {{ error }}
     </span>

@@ -1,6 +1,7 @@
 <template>
   <section class="weather-settings">
     <ul class="locations">
+      <!--Enables drag-n-drop for children components-->
       <draggable
         :list="locations"
         handle=".location__icon_move"
@@ -20,6 +21,7 @@
     ></weather-location-input>
   </section>
 
+  <!--Hidden by default, search pane shows when multiple match cases are returned on user's request-->
   <section :class="['search-pane', searchPaneClassNames]">
     <weather-search-pane
       :searchResults="searchResults"

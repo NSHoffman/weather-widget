@@ -5,6 +5,11 @@ import {
   WeatherDataResponse,
 } from "./types";
 
+/**
+ * getWindDescription()
+ * @param {number} speed - wind speed acquired from API
+ * @returns {string} - verbal description of wind according to international classification
+ */
 export function getWindDescription(speed: number): string {
   if (speed < 0.5) {
     return "Calm";
@@ -47,6 +52,12 @@ export function getWindDescription(speed: number): string {
   }
 }
 
+/**
+ * getWindDescription()
+ * @param {number} speed - wind speed acquired from API
+ * @param {number} deg - wind direction in degrees
+ * @returns {string} - formatted string with wind speed and direction
+ */
 export function getWindDirection(speed: number, deg: number): string {
   const formatted = `${speed}m/s`;
   if (deg >= 11.25 && deg < 33.75) {
@@ -99,6 +110,11 @@ export function getWindDirection(speed: number, deg: number): string {
   }
 }
 
+/**
+ * getNormalizedResult()
+ * @param {WeatherSearchItem} wsi - Complex object from OpenWeather API
+ * @returns {WeatherSearchItemNormalized} - Normalized object with flat structure and excessive fields discarded 
+ */
 export function getNormalizedResult(wsi: WeatherSearchItem): WeatherSearchItemNormalized {
   return {
     id: wsi.id,
@@ -119,6 +135,11 @@ export function getNormalizedResult(wsi: WeatherSearchItem): WeatherSearchItemNo
   };
 }
 
+/**
+ * extractWeatherData()
+ * @param {WeatherDataResponse} - Complex weather object from OpenWeather API
+ * @returns {WeatherData} - Normalized object with excessive fields discarded
+ */
 export function extractWeatherData({ current }: WeatherDataResponse): WeatherData {
   return {
     temp: current.temp,

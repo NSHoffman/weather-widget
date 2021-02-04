@@ -47,8 +47,8 @@ export default defineComponent({
       return `${this.result.name}, ${this.result.country}`;
     },
     temperature(): string {
-      const temp = this.result.temp;
-      return temp > 0 ? `+${Math.round(temp)}°C` : `${Math.round(temp)}°C`;
+      const temp = Math.round(this.result.temp);
+      return temp > 0 ? `+${temp}°C` : `${temp}°C`;
     },
     iconLink(): string {    
       return `http://openweathermap.org/img/wn/${this.result.icon}@2x.png`;

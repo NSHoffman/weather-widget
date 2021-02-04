@@ -18,6 +18,7 @@
       </button>
     </header>
 
+    <!--Settings menu - toggled on gear button press-->
     <weather-settings 
       v-if="settingsOpen"
       :locations="locations"
@@ -26,6 +27,7 @@
       @update-order="updateStorage"
     ></weather-settings>
     
+    <!--Main view, weather data widget, showed when settings are not toggled-->
     <weather-list v-else
       :locations="locations"
     ></weather-list>
@@ -69,10 +71,20 @@ export default defineComponent({
     toggleSettings() {
       this.settingsOpen = !this.settingsOpen;
     },
+    /**
+     * addLocation()
+     * Extracts @param {WeatherLocation} e - location refrence from event object
+     * And adds new location to the storage
+     */
     addLocation(e: WeatherLocation) {
       this.locations = [...this.locations, e];
       this.updateStorage();
     },
+    /**
+     * removeLocation()
+     * Extracts @param {WeatherLocation} e - location refrence from event object
+     * And removes all occurrences of the specified location from the storage
+     */
     removeLocation(e: WeatherLocation) {
       this.locations = this.locations.filter(l => l.id !== e.id);
       this.updateStorage();
